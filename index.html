@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Caffee House | Digital Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f7faf5; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-slate-800 pb-24">
+
+    <header class="bg-white px-4 py-3 flex justify-between items-center shadow-sm sticky top-0 z-40 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-black shadow-md border-2 border-amber-400 overflow-hidden">
+                <span class="text-sm tracking-tighter">NANO</span>
+            </div>
+            <div>
+                <h1 class="font-extrabold text-base tracking-tight text-slate-900 leading-tight">NANO CAFFEE HOUSE</h1>
+                <p class="text-[11px] text-slate-400 font-medium"><i class="fa-solid fa-location-dot text-amber-600 mr-0.5"></i> Hawassa, Ethiopia</p>
+            </div>
+        </div>
+        <button class="bg-[#10a343] text-white px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-sm hover:bg-[#0e8f3b] transition">
+            <i class="fa-solid fa-language text-sm"></i> አማ
+        </button>
+    </header>
+
+    <main class="max-w-md mx-auto px-4 pt-4">
+        
+        <div class="text-center my-4">
+            <h2 class="text-3xl font-black text-[#3d442a] tracking-tight">Menu</h2>
+            <p class="text-xs text-slate-500 font-medium mt-1 px-4">Experience the finest blend of technology and premium coffee culture in Hawassa.</p>
+        </div>
+
+        <div class="relative my-4">
+            <input type="text" id="search-input" onkeyup="searchMenu()" placeholder="Search American Pancake, Tiramisu..." class="w-full bg-white py-3.5 pl-11 pr-4 rounded-2xl border border-slate-200 text-xs font-medium focus:outline-none focus:border-amber-500 shadow-sm transition">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400 text-sm"></i>
+        </div>
+
+        <div class="flex flex-wrap gap-2 my-4 justify-center" id="category-pills">
+            <button onclick="filterCategory('all', this)" class="cat-btn bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition">All</button>
+            <button onclick="filterCategory('breakfast', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Breakfast</button>
+            <button onclick="filterCategory('burger', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Burger & Sandwiches</button>
+            <button onclick="filterCategory('cold-bev', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">COLD Beverage</button>
+            <button onclick="filterCategory('desserts', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Desserts</button>
+            <button onclick="filterCategory('fruits', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Fruits</button>
+            <button onclick="filterCategory('hot-bev', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Hot Beverage</button>
+            <button onclick="filterCategory('juice', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Juice</button>
+            <button onclick="filterCategory('pasta', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Pasta</button>
+        </div>
+
+        <div class="flex justify-between items-center my-4 bg-white p-2 rounded-2xl border border-slate-100 shadow-sm">
+            <div class="flex gap-1 bg-slate-100 p-1 rounded-xl">
+                <button class="bg-gradient-to-r from-[#235324] to-amber-600 text-white p-2 rounded-lg text-xs shadow-sm"><i class="fa-solid fa-table-cells-large"></i></button>
+                <button class="text-slate-400 p-2 rounded-lg text-xs hover:text-slate-600"><i class="fa-solid fa-list"></i></button>
+            </div>
+            <select class="bg-transparent text-xs font-bold text-slate-700 focus:outline-none pr-2">
+                <option>Sort By</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Most Popular</option>
+            </select>
+        </div>
+
+        <div id="menu-items-container" class="space-y-4">
+
+            <div class="menu-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 transition" data-category="breakfast" data-name="american pancake">
+                <div class="relative h-48 w-full bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80" alt="American Pancake" class="w-full h-full object-cover">
+                    <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                        <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                        <span class="text-xs font-bold text-slate-800">4.8</span>
+                    </div>
+                    <div class="absolute top-3 right-3 bg-amber-400 text-amber-950 font-black px-3.5 py-1 rounded-full text-xs shadow-md">
+                        ETB 850
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-base text-[#1e3d1a]">American Pancake</h3>
+                        <i class="fa-regular fa-star text-amber-400 text-sm mt-1"></i>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium mt-1 leading-relaxed">Fluffy pancakes served with fresh berries, butter and rich caramel syrup.</p>
+                    <button onclick="addToOrder('American Pancake', 850)" class="w-full mt-4 bg-[#10a343] hover:bg-[#0e8f3b] text-white font-bold py-3 rounded-2xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
+                        <i class="fa-solid fa-plus text-sm"></i> Add to Order
+                    </button>
+                </div>
+            </div>
+
+            <div class="menu-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 transition" data-category="breakfast" data-name="tiramisu french toast">
+                <div class="relative h-48 w-full bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=600&q=80" alt="Tiramisu French Toast" class="w-full h-full object-cover">
+                    <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                        <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                        <span class="text-xs font-bold text-slate-800">4.9</span>
+                    </div>
+                    <div class="absolute top-3 right-3 bg-amber-400 text-amber-950 font-black px-3.5 py-1 rounded-full text-xs shadow-md">
+                        ETB 1500
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-base text-[#1e3d1a]">Tiramisu French Toast</h3>
+                        <i class="fa-regular fa-star text-amber-400 text-sm mt-1"></i>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium mt-1 leading-relaxed">Brioche bread toasted with cinnamon, egg and milk served with tiramisu cream and berries.</p>
+                    <button onclick="addToOrder('Tiramisu French Toast', 1500)" class="w-full mt-4 bg-[#10a343] hover:bg-[#0e8f3b] text-white font-bold py-3 rounded-2xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
+                        <i class="fa-solid fa-plus text-sm"></i> Add to Order
+                    </button>
+                </div>
+            </div>
+
+            <div class="menu-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 transition" data-category="desserts" data-name="classic waffle">
+                <div class="relative h-48 w-full bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=600&q=80" alt="Classic Waffle" class="w-full h-full object-cover">
+                    <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                        <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                        <span class="text-xs font-bold text-slate-800">4.6</span>
+                    </div>
+                    <div class="absolute top-3 right-3 bg-amber-400 text-amber-950 font-black px-3.5 py-1 rounded-full text-xs shadow-md">
+                        ETB 1300
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-base text-[#1e3d1a]">Classic Waffle</h3>
+                        <i class="fa-regular fa-star text-amber-400 text-sm mt-1"></i>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium mt-1 leading-relaxed">Fresh golden waffle loaded with chocolate chips, whipped cream and fresh raspberries.</p>
+                    <button onclick="addToOrder('Classic Waffle', 1300)" class="w-full mt-4 bg-[#10a343] hover:bg-[#0e8f3b] text-white font-bold py-3 rounded-2xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
+                        <i class="fa-solid fa-plus text-sm"></i> Add to Order
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <div class="fixed bottom-20 right-4 flex flex-col gap-3 z-30">
+        <button onclick="callWaiter()" class="w-12 h-12 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-105">
+            <i class="fa-solid fa-bell text-sm"></i>
+        </button>
+        <button onclick="toggleCartModal()" class="relative w-12 h-12 bg-[#10a343] hover:bg-[#0e8f3b] text-white rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-105">
+            <i class="fa-solid fa-bag-shopping text-sm"></i>
+            <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+        </button>
+    </div>
+
+    <div class="fixed bottom-20 left-4 z-30">
+        <button onclick="alert('Thank you for choosing Nano Caffee House! Please leave your review.')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg transition">
+            <i class="fa-solid fa-star text-amber-300"></i> Review Us
+        </button>
+    </div>
+
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-3 px-6 flex justify-around items-center z-40 shadow-lg">
+        <button class="flex flex-col items-center text-[#235324]">
+            <i class="fa-solid fa-table-cells text-base"></i>
+            <span class="text-[10px] font-bold mt-1">Menu</span>
+        </button>
+        <button onclick="alert('Order tracking feature enabled.')" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-clock text-base"></i>
+            <span class="text-[10px] font-medium mt-1">Track</span>
+        </button>
+        <button onclick="callWaiter()" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-bell-concierge text-base"></i>
+            <span class="text-[10px] font-medium mt-1">Waiter</span>
+        </button>
+        <button onclick="toggleCartModal()" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-basket-shopping text-base"></i>
+            <span class="text-[10px] font-medium mt-1">Cart</span>
+        </button>
+    </nav>
+
+    <div id="cart-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex justify-end backdrop-blur-xs">
+        <div class="bg-white w-full max-w-sm h-full p-6 flex flex-col justify-between shadow-2xl animate-in slide-in-from-right duration-200">
+            <div>
+                <div class="flex justify-between items-center border-b pb-4">
+                    <h2 class="font-extrabold text-base text-slate-900">Your Order Cart</h2>
+                    <button onclick="toggleCartModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div id="cart-items-list" class="mt-4 space-y-3 max-h-[60vh] overflow-y-auto pr-1">
+                    <p class="text-xs text-slate-400 text-center py-10">Your cart is empty.</p>
+                </div>
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center font-black text-base mb-4">
+                    <span>Total Amount:</span>
+                    <span id="cart-total-price" class="text-[#235324]">ETB 0</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="w-full bg-[#10a343] hover:bg-[#0e8f3b] text-white py-3.5 rounded-2xl font-extrabold text-xs flex items-center justify-center gap-2 shadow-md transition">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Order via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function addToOrder(name, price) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            
+            // Brief visual notification animation
+            const badge = document.getElementById('cart-badge');
+            badge.classList.add('scale-125');
+            setTimeout(() => badge.classList.remove('scale-125'), 200);
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const listEl = document.getElementById('cart-items-list');
+            const totalEl = document.getElementById('cart-total-price');
+
+            let totalCount = 0;
+            let totalPrice = 0;
+            let html = '';
+
+            cart.forEach((item, index) => {
+                totalCount += item.qty;
+                totalPrice += item.price * item.qty;
+                html += `
+                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <div>
+                            <h4 class="font-bold text-xs text-slate-800">${item.name}</h4>
+                            <p class="text-[11px] text-slate-500">ETB ${item.price} × ${item.qty}</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-xs text-[#235324]">ETB ${item.price * item.qty}</span>
+                            <button onclick="removeCartItem(${index})" class="text-red-500 hover:text-red-700 text-xs"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            badge.innerText = totalCount;
+            listEl.innerHTML = html || '<p class="text-xs text-slate-400 text-center py-10">Your cart is empty.</p>';
+            totalEl.innerText = `ETB ${totalPrice}`;
+        }
+
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function filterCategory(category, btnElement) {
+            // Style pills
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.className = "cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-550 transition";
+            });
+            btnElement.className = "cat-btn bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition";
+
+            // Filter cards
+            document.querySelectorAll('.menu-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function searchMenu() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            document.querySelectorAll('.menu-card').forEach(card => {
+                const name = card.dataset.name;
+                if (name.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function callWaiter() {
+            alert('🔔 A waiter has been notified and is heading to your table at Nano Caffee House!');
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return alert('Your cart is empty!');
+            let message = "Hello Nano Caffee House (Hawassa), I would like to place an order:%0A";
+            let total = 0;
+            cart.forEach(item => {
+                message += `- ${item.name} (x${item.qty}): ETB ${item.price * item.qty}%0A`;
+                total += item.price * item.qty;
+            });
+            message += `%0A*Total Amount: ETB ${total}*`;
+            
+            // Nano Caffee House WhatsApp format
+            const phone = "251900000000";
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
