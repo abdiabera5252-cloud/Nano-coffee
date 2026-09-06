@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nano Caffee House | Digital Menu & Ordering</title>
+    <title>Nano Caffee House | Digital Menu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -34,11 +34,11 @@
         
         <div class="text-center my-4">
             <h2 class="text-3xl font-black text-[#3d442a] tracking-tight">Menu</h2>
-            <p class="text-xs text-slate-500 font-medium mt-1 px-4">Experience the finest blend of technology and premium coffee culture in Hawassa.</p>
+            <p class="text-xs text-slate-500 font-medium mt-1 px-4">Live menu synced directly from Google Sheets.</p>
         </div>
 
         <div class="relative my-4">
-            <input type="text" id="search-input" onkeyup="searchMenu()" placeholder="Search Vegetable Wrap, Pancake..." class="w-full bg-white py-3.5 pl-11 pr-4 rounded-2xl border border-slate-200 text-xs font-medium focus:outline-none focus:border-amber-500 shadow-sm transition">
+            <input type="text" id="search-input" onkeyup="searchMenu()" placeholder="Search items from sheet..." class="w-full bg-white py-3.5 pl-11 pr-4 rounded-2xl border border-slate-200 text-xs font-medium focus:outline-none focus:border-amber-500 shadow-sm transition">
             <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400 text-sm"></i>
         </div>
 
@@ -46,71 +46,14 @@
             <button onclick="filterCategory('all', this)" class="cat-btn bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition">All</button>
             <button onclick="filterCategory('breakfast', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Breakfast</button>
             <button onclick="filterCategory('burger', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Burger & Sandwiches</button>
-            <button onclick="filterCategory('cold-bev', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">COLD Beverage</button>
             <button onclick="filterCategory('desserts', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Desserts</button>
         </div>
 
-        <div class="flex justify-between items-center my-4 bg-white p-2 rounded-2xl border border-slate-100 shadow-sm">
-            <div class="flex gap-1 bg-slate-100 p-1 rounded-xl">
-                <button class="bg-gradient-to-r from-[#235324] to-amber-600 text-white p-2 rounded-lg text-xs shadow-sm"><i class="fa-solid fa-table-cells-large"></i></button>
-                <button class="text-slate-400 p-2 rounded-lg text-xs hover:text-slate-600"><i class="fa-solid fa-list"></i></button>
-            </div>
-            <select class="bg-transparent text-xs font-bold text-slate-700 focus:outline-none pr-2">
-                <option>Sort By</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Most Popular</option>
-            </select>
-        </div>
-
         <div id="menu-items-container" class="space-y-4">
-
-            <div class="menu-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 transition" data-category="burger" data-name="vegetable wrap">
-                <div class="relative h-48 w-full bg-slate-100">
-                    <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" alt="Vegetable Wrap" class="w-full h-full object-cover">
-                    <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                        <i class="fa-solid fa-star text-amber-400 text-xs"></i>
-                        <span class="text-xs font-bold text-slate-800">4.0</span>
-                    </div>
-                    <div class="absolute top-3 right-3 bg-amber-400 text-amber-950 font-black px-3.5 py-1 rounded-full text-xs shadow-md">
-                        ETB 900
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex justify-between items-start">
-                        <h3 class="font-bold text-base text-[#1e3d1a]">Vegetable Wrap</h3>
-                        <i class="fa-regular fa-star text-amber-400 text-sm mt-1"></i>
-                    </div>
-                    <p class="text-xs text-slate-500 font-medium mt-1 leading-relaxed">Fresh grilled vegetables wrapped in tortilla bread, served with french fries and special sauce.</p>
-                    <button onclick="addToOrder('Vegetable Wrap', 900)" class="w-full mt-4 bg-[#10a343] hover:bg-[#0e8f3b] text-white font-bold py-3 rounded-2xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
-                        <i class="fa-solid fa-plus text-sm"></i> Add to Order
-                    </button>
-                </div>
+            <div class="text-center py-10 text-xs text-slate-400">
+                <i class="fa-solid fa-spinner fa-spin text-lg text-amber-600 mb-2"></i>
+                <p>Loading menu items from Google Sheet...</p>
             </div>
-
-            <div class="menu-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 transition" data-category="breakfast" data-name="american pancake">
-                <div class="relative h-48 w-full bg-slate-100">
-                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80" alt="American Pancake" class="w-full h-full object-cover">
-                    <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                        <i class="fa-solid fa-star text-amber-400 text-xs"></i>
-                        <span class="text-xs font-bold text-slate-800">4.8</span>
-                    </div>
-                    <div class="absolute top-3 right-3 bg-amber-400 text-amber-950 font-black px-3.5 py-1 rounded-full text-xs shadow-md">
-                        ETB 850
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex justify-between items-start">
-                        <h3 class="font-bold text-base text-[#1e3d1a]">American Pancake</h3>
-                        <i class="fa-regular fa-star text-amber-400 text-sm mt-1"></i>
-                    </div>
-                    <p class="text-xs text-slate-500 font-medium mt-1 leading-relaxed">Fluffy pancakes served with berries, butter and caramel syrup.</p>
-                    <button onclick="addToOrder('American Pancake', 850)" class="w-full mt-4 bg-[#10a343] hover:bg-[#0e8f3b] text-white font-bold py-3 rounded-2xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
-                        <i class="fa-solid fa-plus text-sm"></i> Add to Order
-                    </button>
-                </div>
-            </div>
-
         </div>
 
         <div id="track-section" class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 my-6 hidden">
@@ -167,33 +110,25 @@
                     <h2 class="font-extrabold text-base text-slate-900">Call a Waiter</h2>
                     <button onclick="toggleWaiterModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
                 </div>
-                
                 <div class="my-4">
                     <label class="block text-xs font-bold text-slate-700 mb-2">Select Your Table</label>
                     <div class="grid grid-cols-3 gap-2" id="waiter-tables">
-                        <button onclick="selectTableWaiter(1, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343] transition">Table 1</button>
-                        <button onclick="selectTableWaiter(2, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343] transition">Table 2</button>
-                        <button onclick="selectTableWaiter(3, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343] transition">Table 3</button>
-                        <button onclick="selectTableWaiter(4, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343] transition">Table 4</button>
-                        <button onclick="selectTableWaiter(5, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343] transition">Table 5</button>
-                        <button onclick="selectTableWaiter(6, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343] transition">Table 6</button>
+                        <button onclick="selectTableWaiter(1, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343]">Table 1</button>
+                        <button onclick="selectTableWaiter(2, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343]">Table 2</button>
+                        <button onclick="selectTableWaiter(3, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343]">Table 3</button>
                     </div>
                 </div>
-
                 <div class="my-4">
                     <label class="block text-xs font-bold text-slate-700 mb-2">What do you need?</label>
                     <div class="grid grid-cols-2 gap-2">
-                        <button onclick="selectServiceReq('Water', this)" class="srv-btn border border-slate-200 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2 hover:border-amber-500 transition"><i class="fa-solid fa-mug-hot text-amber-600"></i> Water</button>
-                        <button onclick="selectServiceReq('Bill', this)" class="srv-btn border border-slate-200 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2 hover:border-amber-500 transition"><i class="fa-solid fa-receipt text-amber-600"></i> Bill</button>
-                        <button onclick="selectServiceReq('Order Help', this)" class="srv-btn border border-slate-200 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2 hover:border-amber-500 transition"><i class="fa-solid fa-cart-shopping text-amber-600"></i> Order Help</button>
-                        <button onclick="selectServiceReq('Other', this)" class="srv-btn border border-amber-500 bg-amber-50/50 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2 transition"><i class="fa-solid fa-comment-dots text-amber-600"></i> Other</button>
+                        <button onclick="selectServiceReq('Water', this)" class="srv-btn border border-slate-200 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2"><i class="fa-solid fa-mug-hot text-amber-600"></i> Water</button>
+                        <button onclick="selectServiceReq('Bill', this)" class="srv-btn border border-slate-200 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2"><i class="fa-solid fa-receipt text-amber-600"></i> Bill</button>
                     </div>
                 </div>
             </div>
-
             <div class="border-t pt-4 flex gap-2">
-                <button onclick="toggleWaiterModal()" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl text-xs font-bold hover:bg-slate-200 transition">Close</button>
-                <button onclick="submitWaiterCall()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl text-xs font-bold shadow-md transition">Call Waiter</button>
+                <button onclick="toggleWaiterModal()" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl text-xs font-bold">Close</button>
+                <button onclick="submitWaiterCall()" class="flex-1 bg-red-600 text-white py-3 rounded-xl text-xs font-bold shadow-md">Call Waiter</button>
             </div>
         </div>
     </div>
@@ -207,71 +142,22 @@
                     </h2>
                     <button onclick="toggleCartModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
                 </div>
-
                 <div class="flex justify-between items-center my-4 p-3 bg-slate-50 rounded-2xl border border-slate-100">
                     <span class="font-bold text-xs text-slate-700">Subtotal</span>
                     <span id="cart-subtotal" class="font-black text-sm text-amber-600">ETB 0.00</span>
                 </div>
-
                 <div id="cart-items-list" class="space-y-2 mb-4">
                     <p class="text-xs text-slate-400 text-center py-6">Your cart is empty</p>
                 </div>
-
                 <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-3 mb-4">
-                    <h3 class="font-bold text-xs text-slate-800 flex items-center gap-1.5"><i class="fa-solid fa-user text-amber-600"></i> Your Information</h3>
-                    <div>
-                        <label class="text-[10px] font-semibold text-slate-500">Name (Optional)</label>
-                        <input type="text" id="cust-name" placeholder="John / ጆን" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs mt-1 focus:outline-none focus:border-amber-500">
-                    </div>
-                    <div>
-                        <label class="text-[10px] font-semibold text-slate-500">Phone Number</label>
-                        <input type="text" id="cust-phone" placeholder="+251 XXX XXX XXX" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs mt-1 focus:outline-none focus:border-amber-500">
-                    </div>
-                </div>
-
-                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-3 mb-4">
-                    <h3 class="font-bold text-xs text-slate-800">How to Receive Order</h3>
-                    <div class="grid grid-cols-3 gap-2">
-                        <button onclick="setFulfillment('Desk', this)" class="fulfillment-btn bg-red-50 border border-red-500 text-red-600 p-2.5 rounded-xl text-xs font-bold flex flex-col items-center gap-1">
-                            <i class="fa-solid fa-mug-hot text-sm"></i> Desk
-                        </button>
-                        <button onclick="setFulfillment('Takeaway', this)" class="fulfillment-btn bg-white border border-slate-200 text-slate-600 p-2.5 rounded-xl text-xs font-semibold flex flex-col items-center gap-1">
-                            <i class="fa-solid fa-bag-shopping text-sm"></i> Takeaway
-                        </button>
-                        <button onclick="setFulfillment('Delivery', this)" class="fulfillment-btn bg-white border border-slate-200 text-slate-600 p-2.5 rounded-xl text-xs font-semibold flex flex-col items-center gap-1">
-                            <i class="fa-solid fa-truck text-sm"></i> Delivery
-                        </button>
-                    </div>
-
-                    <div id="table-picker-container" class="mt-3 pt-3 border-t border-slate-200">
-                        <label class="block text-[11px] font-bold text-slate-700 mb-2">Select Table Number</label>
-                        <div class="grid grid-cols-6 gap-1.5 max-h-36 overflow-y-auto pr-1">
-                            <button onclick="selectTableCart(1, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">1</button>
-                            <button onclick="selectTableCart(2, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">2</button>
-                            <button onclick="selectTableCart(3, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">3</button>
-                            <button onclick="selectTableCart(4, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">4</button>
-                            <button onclick="selectTableCart(5, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">5</button>
-                            <button onclick="selectTableCart(6, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">6</button>
-                            <button onclick="selectTableCart(7, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">7</button>
-                            <button onclick="selectTableCart(8, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">8</button>
-                            <button onclick="selectTableCart(9, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">9</button>
-                            <button onclick="selectTableCart(10, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">10</button>
-                            <button onclick="selectTableCart(11, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">11</button>
-                            <button onclick="selectTableCart(12, this)" class="cart-tbl bg-white border border-slate-200 py-2 rounded-lg text-xs font-bold text-[#10a343]">12</button>
-                        </div>
-                        <p class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-circle-info"></i> Your food will be served at this table</p>
-                    </div>
-                </div>
-
-                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-4">
-                    <label class="block font-bold text-xs text-slate-800 mb-1"><i class="fa-solid fa-pen text-amber-600"></i> Special Instructions</label>
-                    <textarea id="special-notes" placeholder="e.g., No mayonnaise in my burger, Extra spicy, Allergy to nuts..." class="w-full bg-white border border-slate-200 rounded-xl p-3 text-xs h-20 focus:outline-none focus:border-amber-500"></textarea>
+                    <h3 class="font-bold text-xs text-slate-800">Your Information</h3>
+                    <input type="text" id="cust-name" placeholder="Name (Optional)" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-500">
+                    <input type="text" id="cust-phone" placeholder="Phone Number" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-500">
                 </div>
             </div>
-
             <div class="border-t pt-4 flex gap-2">
-                <button onclick="toggleCartModal()" class="flex-1 bg-slate-100 text-slate-700 py-3.5 rounded-2xl text-xs font-bold hover:bg-slate-200 transition">Close</button>
-                <button onclick="confirmOrderWhatsApp()" class="flex-2 bg-[#10a343] hover:bg-[#0e8f3b] text-white py-3.5 rounded-2xl text-xs font-extrabold shadow-md transition flex items-center justify-center gap-1.5">
+                <button onclick="toggleCartModal()" class="flex-1 bg-slate-100 text-slate-700 py-3.5 rounded-2xl text-xs font-bold">Close</button>
+                <button onclick="confirmOrderWhatsApp()" class="flex-2 bg-[#10a343] text-white py-3.5 rounded-2xl text-xs font-extrabold shadow-md flex items-center justify-center gap-1.5">
                     <i class="fa-brands fa-whatsapp text-sm"></i> Confirm Order
                 </button>
             </div>
@@ -279,126 +165,94 @@
     </div>
 
     <script>
+        let menuItems = [];
         let cart = [];
         let selectedTableWaiter = 1;
-        let selectedService = 'Other';
-        let selectedFulfillment = 'Desk';
-        let selectedTableCart = 1;
+        let selectedService = 'Water';
 
-        function switchTab(tab) {
-            const menuCont = document.getElementById('menu-items-container').parentElement;
-            const trackCont = document.getElementById('track-section');
-            const navMenu = document.getElementById('nav-menu');
-            const navTrack = document.getElementById('nav-track');
+        // REPLACE THIS URL with your published Google Sheet CSV link
+        // File -> Share -> Publish to web -> Format: Comma-separated values (.csv)
+        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR_YOUR_SHEET_ID_HERE/pub?output=csv";
 
-            if (tab === 'track') {
-                trackCont.classList.remove('hidden');
-                navTrack.className = "flex flex-col items-center text-[#235324]";
-                navMenu.className = "flex flex-col items-center text-slate-400 hover:text-slate-600";
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                trackCont.classList.add('hidden');
-                navMenu.className = "flex flex-col items-center text-[#235324]";
-                navTrack.className = "flex flex-col items-center text-slate-400 hover:text-slate-600";
+        // Fetch menu data on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchMenuFromSheet();
+        });
+
+        async function fetchMenuFromSheet() {
+            try {
+                const response = await fetch(SHEET_CSV_URL);
+                const data = await response.text();
+                parseCSV(data);
+            } catch (error) {
+                console.error("Error loading sheet data, loading backup items:", error);
+                // Fallback demo items if sheet link isn't configured yet
+                menuItems = [
+                    { id: 1, name: "American Pancake", category: "breakfast", price: 850, rating: 4.8, image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80" },
+                    { id: 2, name: "Vegetable Wrap", category: "burger", price: 900, rating: 4.0, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" }
+                ];
+                renderMenu(menuItems);
             }
         }
 
-        function toggleCartModal() {
-            document.getElementById('cart-modal').classList.toggle('hidden');
-        }
-
-        function toggleWaiterModal() {
-            document.getElementById('waiter-modal').classList.toggle('hidden');
-        }
-
-        function addToOrder(name, price) {
-            const existing = cart.find(item => item.name === name);
-            if (existing) {
-                existing.qty++;
-            } else {
-                cart.push({ name, price, qty: 1 });
-            }
-            updateCartUI();
+        function parseCSV(csvText) {
+            const rows = csvText.split('\n').map(row => row.split(','));
+            const headers = rows[0].map(h => h.trim().toLowerCase());
             
-            const badge = document.getElementById('cart-badge');
-            badge.classList.add('scale-125');
-            setTimeout(() => badge.classList.remove('scale-125'), 200);
+            menuItems = [];
+            for (let i = 1; i < rows.length; i++) {
+                if (rows[i].length < headers.length) continue;
+                const rowObj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    rowObj[headers[j]] = rows[i][j] ? rows[i][j].trim().replace(/^"|"$/g, '') : '';
+                }
+                if (rowObj.name) {
+                    menuItems.push({
+                        id: rowObj.id || i,
+                        name: rowObj.name,
+                        category: rowObj.category || 'all',
+                        price: parseFloat(rowObj.price) || 0,
+                        rating: rowObj.rating || '4.5',
+                        image: rowObj.image || 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80'
+                    });
+                }
+            }
+            renderMenu(menuItems);
         }
 
-        function updateCartUI() {
-            const badge = document.getElementById('cart-badge');
-            const listEl = document.getElementById('cart-items-list');
-            const subtotalEl = document.getElementById('cart-subtotal');
+        function renderMenu(items) {
+            const container = document.getElementById('menu-items-container');
+            if (items.length === 0) {
+                container.innerHTML = '<p class="text-xs text-slate-400 text-center py-10">No items found in Google Sheet.</p>';
+                return;
+            }
 
-            let totalCount = 0;
-            let totalPrice = 0;
             let html = '';
-
-            cart.forEach((item, index) => {
-                totalCount += item.qty;
-                totalPrice += item.price * item.qty;
+            items.forEach(item => {
                 html += `
-                    <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                        <div>
-                            <h4 class="font-bold text-xs text-slate-800">${item.name}</h4>
-                            <p class="text-[10px] text-slate-500">ETB ${item.price} × ${item.qty}</p>
+                    <div class="menu-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 transition" data-category="${item.category}" data-name="${item.name.toLowerCase()}">
+                        <div class="relative h-48 w-full bg-slate-100">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                                <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                                <span class="text-xs font-bold text-slate-800">${item.rating}</span>
+                            </div>
+                            <div class="absolute top-3 right-3 bg-amber-400 text-amber-950 font-black px-3.5 py-1 rounded-full text-xs shadow-md">
+                                ETB ${item.price}
+                            </div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-bold text-xs text-amber-600">ETB ${item.price * item.qty}</span>
-                            <button onclick="removeCartItem(${index})" class="text-red-500 hover:text-red-700 text-xs"><i class="fa-solid fa-trash"></i></button>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-base text-[#1e3d1a]">${item.name}</h3>
+                            </div>
+                            <button onclick="addToOrder('${item.name}', ${item.price})" class="w-full mt-4 bg-[#10a343] hover:bg-[#0e8f3b] text-white font-bold py-3 rounded-2xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
+                                <i class="fa-solid fa-plus text-sm"></i> Add to Order
+                            </button>
                         </div>
                     </div>
                 `;
             });
-
-            badge.innerText = totalCount;
-            listEl.innerHTML = html || '<p class="text-xs text-slate-400 text-center py-6">Your cart is empty</p>';
-            subtotalEl.innerText = `ETB ${totalPrice}.00`;
-        }
-
-        function removeCartItem(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function selectTableWaiter(num, btn) {
-            selectedTableWaiter = num;
-            document.querySelectorAll('.waiter-tbl').forEach(b => b.classList.remove('border-[#10a343]', 'bg-emerald-50'));
-            btn.classList.add('border-[#10a343]', 'bg-emerald-50');
-        }
-
-        function selectServiceReq(service, btn) {
-            selectedService = service;
-            document.querySelectorAll('.srv-btn').forEach(b => {
-                b.className = "srv-btn border border-slate-200 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2 hover:border-amber-500 transition";
-            });
-            btn.className = "srv-btn border border-amber-500 bg-amber-50/50 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2 transition";
-        }
-
-        function submitWaiterCall() {
-            alert(`🔔 Waiter called to Table ${selectedTableWaiter} for: ${selectedService}. Help is on the way!`);
-            toggleWaiterModal();
-        }
-
-        function setFulfillment(type, btn) {
-            selectedFulfillment = type;
-            document.querySelectorAll('.fulfillment-btn').forEach(b => {
-                b.className = "fulfillment-btn bg-white border border-slate-200 text-slate-600 p-2.5 rounded-xl text-xs font-semibold flex flex-col items-center gap-1";
-            });
-            btn.className = "fulfillment-btn bg-red-50 border border-red-500 text-red-600 p-2.5 rounded-xl text-xs font-bold flex flex-col items-center gap-1";
-
-            const tablePicker = document.getElementById('table-picker-container');
-            if (type === 'Desk') {
-                tablePicker.style.display = 'block';
-            } else {
-                tablePicker.style.display = 'none';
-            }
-        }
-
-        function selectTableCart(num, btn) {
-            selectedTableCart = num;
-            document.querySelectorAll('.cart-tbl').forEach(b => b.classList.remove('bg-emerald-50', 'border-[#10a343]'));
-            btn.classList.add('bg-emerald-50', 'border-[#10a343]');
+            container.innerHTML = html;
         }
 
         function filterCategory(category, btnElement) {
@@ -428,36 +282,99 @@
             });
         }
 
+        function switchTab(tab) {
+            const trackCont = document.getElementById('track-section');
+            const menuCont = document.getElementById('menu-items-container');
+            const navMenu = document.getElementById('nav-menu');
+            const navTrack = document.getElementById('nav-track');
+
+            if (tab === 'track') {
+                trackCont.classList.remove('hidden');
+                menuCont.parentElement.style.display = 'none';
+                trackCont.style.display = 'block';
+                navTrack.className = "flex flex-col items-center text-[#235324]";
+                navMenu.className = "flex flex-col items-center text-slate-400";
+            } else {
+                trackCont.classList.add('hidden');
+                menuCont.parentElement.style.display = 'block';
+                navMenu.className = "flex flex-col items-center text-[#235324]";
+                navTrack.className = "flex flex-col items-center text-slate-400";
+            }
+        }
+
+        function toggleCartModal() { document.getElementById('cart-modal').classList.toggle('hidden'); }
+        function toggleWaiterModal() { document.getElementById('waiter-modal').classList.toggle('hidden'); }
+
+        function addToOrder(name, price) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) existing.qty++;
+            else cart.push({ name, price, qty: 1 });
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const listEl = document.getElementById('cart-items-list');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            let totalCount = 0, totalPrice = 0, html = '';
+
+            cart.forEach((item, index) => {
+                totalCount += item.qty;
+                totalPrice += item.price * item.qty;
+                html += `
+                    <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                        <div>
+                            <h4 class="font-bold text-xs text-slate-800">${item.name}</h4>
+                            <p class="text-[10px] text-slate-500">ETB ${item.price} × ${item.qty}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-xs text-amber-600">ETB ${item.price * item.qty}</span>
+                            <button onclick="cart.splice(${index}, 1); updateCartUI();" class="text-red-500 text-xs"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            badge.innerText = totalCount;
+            listEl.innerHTML = html || '<p class="text-xs text-slate-400 text-center py-6">Your cart is empty</p>';
+            subtotalEl.innerText = `ETB ${totalPrice}.00`;
+        }
+
+        function selectTableWaiter(num, btn) {
+            selectedTableWaiter = num;
+            document.querySelectorAll('.waiter-tbl').forEach(b => b.classList.remove('border-[#10a343]', 'bg-emerald-50'));
+            btn.classList.add('border-[#10a343]', 'bg-emerald-50');
+        }
+
+        function selectServiceReq(srv, btn) {
+            selectedService = srv;
+            document.querySelectorAll('.srv-btn').forEach(b => b.classList.remove('border-amber-500'));
+            btn.classList.add('border-amber-500');
+        }
+
+        function submitWaiterCall() {
+            alert(`🔔 Waiter called to Table ${selectedTableWaiter} for: ${selectedService}!`);
+            toggleWaiterModal();
+        }
+
         function trackOrder() {
             const code = document.getElementById('tracking-input').value;
             const res = document.getElementById('tracking-result');
-            if(!code) {
-                res.innerHTML = '<span class="text-red-500">Please enter a valid order number.</span>';
-                return;
-            }
-            res.innerHTML = `<div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800">Order <b>${code}</b> is currently being prepared in the kitchen. Estimated time: 10 mins.</div>`;
+            if(!code) return res.innerHTML = '<span class="text-red-500">Please enter order number.</span>';
+            res.innerHTML = `<div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800">Order <b>${code}</b> is being prepared.</div>`;
         }
 
         function confirmOrderWhatsApp() {
             if (cart.length === 0) return alert('Your cart is empty!');
             const name = document.getElementById('cust-name').value || 'Guest';
             const phone = document.getElementById('cust-phone').value || 'Not provided';
-            const notes = document.getElementById('special-notes').value || 'None';
-
-            let message = `Hello Nano Caffee House (Hawassa), New Order:%0A`;
-            message += `*Customer:* ${name} (${phone})%0A`;
-            message += `*Type:* ${selectedFulfillment} ${selectedFulfillment === 'Desk' ? '(Table ' + selectedTableCart + ')' : ''}%0A`;
-            message += `*Special Notes:* ${notes}%0A%0A*Items:*%0A`;
-
+            let message = `Hello Nano Caffee House, New Order:%0A*Customer:* ${name} (${phone})%0A%0A`;
             let total = 0;
             cart.forEach(item => {
                 message += `- ${item.name} (x${item.qty}): ETB ${item.price * item.qty}%0A`;
                 total += item.price * item.qty;
             });
             message += `%0A*Total Amount: ETB ${total}.00*`;
-
-            const phoneNum = "251900000000"; // Replace with actual cafe phone
-            window.open(`https://wa.me/${phoneNum}?text=${message}`, '_blank');
+            window.open(`https://wa.me/251900000000?text=${message}`, '_blank');
         }
     </script>
 </body>
