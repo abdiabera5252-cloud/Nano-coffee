@@ -51,13 +51,53 @@
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400 text-sm"></i>
             </div>
 
-            <!-- Category Horizontal Pills Grid (Updated Bar Options) -->
-            <div class="flex gap-2 overflow-x-auto no-scrollbar my-4 pb-2 px-1" id="category-pills">
-                <button onclick="filterCategory('all', this)" class="cat-btn shrink-0 bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition" data-en="All" data-am="ሁሉም">All</button>
-                <button onclick="filterCategory('food', this)" class="cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="List of Foods" data-am="የምግብ ዝርዝር">List of Foods</button>
-                <button onclick="filterCategory('hot-drinks', this)" class="cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Hot Drinks" data-am="ትኩስ መጠጦች">Hot Drinks</button>
-                <button onclick="filterCategory('soft-drinks', this)" class="cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Soft Drinks" data-am="ለስላሳ መጠጦች">Soft Drinks</button>
-                <button onclick="filterCategory('juices', this)" class="cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Juices" data-am="ጁስ">Juices</button>
+            <!-- Multi-row Category Pills Layout matching Screenshot -->
+            <div class="flex flex-wrap gap-2 my-4 justify-center" id="category-pills">
+                <button onclick="filterCategory('all', this)" class="cat-btn bg-[#3b531f] text-white px-4 py-2.5 rounded-full text-xs font-bold shadow-sm transition flex items-center gap-1.5" data-en="All" data-am="ሁሉም">
+                    <i class="fa-solid fa-border-all"></i> All
+                </button>
+                <button onclick="filterCategory('breakfast', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Breakfast" data-am="ቁርስ">
+                    <i class="fa-solid fa-tag text-slate-400 text-[10px]"></i> Breakfast <span class="text-[10px] text-slate-400 font-normal">8</span>
+                </button>
+                <button onclick="filterCategory('burger-sandwich', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Burger and Sandwich" data-am="በርገር እና ሳንድዊች">
+                    Burger and Sandwich <span class="text-[10px] text-slate-400 font-normal">4</span>
+                </button>
+                <button onclick="filterCategory('cold-beverage', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="COLD Beverage" data-am="ቀዝቃዛ መጠጦች">
+                    <i class="fa-solid fa-tag text-slate-400 text-[10px]"></i> COLD Beverage <span class="text-[10px] text-slate-400 font-normal">28</span>
+                </button>
+                <button onclick="filterCategory('desserts', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Desserts" data-am="ዲሰርት">
+                    Desserts <span class="text-[10px] text-slate-400 font-normal">2</span>
+                </button>
+                <button onclick="filterCategory('fruits', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Fruits" data-am="ፍራፍሬ">
+                    <i class="fa-solid fa-tag text-slate-400 text-[10px]"></i> fruits <span class="text-[10px] text-slate-400 font-normal">1</span>
+                </button>
+                <button onclick="filterCategory('hot-beverage', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Hot Beverage" data-am="ትኩስ መጠጥ">
+                    <i class="fa-solid fa-tag text-slate-400 text-[10px]"></i> Hot Beverage <span class="text-[10px] text-slate-400 font-normal">18</span>
+                </button>
+                <button onclick="filterCategory('juice', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Juice" data-am="ጁስ">
+                    <i class="fa-solid fa-tag text-slate-400 text-[10px]"></i> Juice <span class="text-[10px] text-slate-400 font-normal">14</span>
+                </button>
+                <button onclick="filterCategory('main-course', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Main Course" data-am="ዋና ምግብ">
+                    <i class="fa-solid fa-tag text-slate-400 text-[10px]"></i> Main Course <span class="text-[10px] text-slate-400 font-normal">3</span>
+                </button>
+                <button onclick="filterCategory('mendii', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Mendii" data-am="መንዲ">
+                    <i class="fa-solid fa-tag text-slate-400 text-[10px]"></i> Mendii <span class="text-[10px] text-slate-400 font-normal">9</span>
+                </button>
+                <button onclick="filterCategory('pasta', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Pasta" data-am="ፓስታ">
+                    <i class="fa-solid fa-circle-dot text-slate-400 text-[10px]"></i> Pasta <span class="text-[10px] text-slate-400 font-normal">7</span>
+                </button>
+                <button onclick="filterCategory('pizza', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Pizza" data-am="ፒዛ">
+                    <i class="fa-solid fa-circle-dot text-slate-400 text-[10px]"></i> pizza <span class="text-[10px] text-slate-400 font-normal">5</span>
+                </button>
+                <button onclick="filterCategory('salad', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Salad" data-am="ሳላድ">
+                    <i class="fa-solid fa-circle-dot text-slate-400 text-[10px]"></i> Salad <span class="text-[10px] text-slate-400 font-normal">3</span>
+                </button>
+                <button onclick="filterCategory('soft-drinks', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Soft drinks" data-am="ለስላሳ መጠጦች">
+                    <i class="fa-solid fa-glass-water text-slate-400 text-[10px]"></i> Soft drinks <span class="text-[10px] text-slate-400 font-normal">3</span>
+                </button>
+                <button onclick="filterCategory('wrap', this)" class="cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5" data-en="Wrap" data-am="ራፕ">
+                    <i class="fa-solid fa-bag-shopping text-slate-400 text-[10px]"></i> Wrap <span class="text-[10px] text-slate-400 font-normal">1</span>
+                </button>
             </div>
 
             <!-- Menu Item Cards Dynamic Container -->
@@ -263,7 +303,7 @@
         let selectedTableWaiter = 1;
         let currentRating = 5;
 
-        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT643j-V65sTKYjMrcuHg9igQ-6T4U3FtpHub9EZB91lcbVX4gX1zNfpzhigMRgPEHk62IliUa2Ug1T/pub?gid=0&single=true&output=csv";
+        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR_YOUR_SHEET_ID_HERE/pub?output=csv";
 
         window.addEventListener('DOMContentLoaded', () => {
             fetchMenuFromSheet();
@@ -290,10 +330,10 @@
             } catch (error) {
                 console.error("Using backup demo items matching new categories:", error);
                 menuItems = [
-                    { id: 1, name: "Special Burger", category: "food", price: 450, rating: 4.9, image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" },
-                    { id: 2, name: "Macchiato", category: "hot-drinks", price: 50, rating: 4.8, image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" },
+                    { id: 1, name: "Special Burger", category: "burger-sandwich", price: 450, rating: 4.9, image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" },
+                    { id: 2, name: "Macchiato", category: "hot-beverage", price: 50, rating: 4.8, image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" },
                     { id: 3, name: "Coca Cola", category: "soft-drinks", price: 40, rating: 4.7, image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=80" },
-                    { id: 4, name: "Fresh Avocado Juice", category: "juices", price: 90, rating: 4.9, image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80" }
+                    { id: 4, name: "Fresh Avocado Juice", category: "juice", price: 90, rating: 4.9, image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80" }
                 ];
                 renderMenu(menuItems);
             }
@@ -314,7 +354,7 @@
                     menuItems.push({
                         id: rowObj.id || i,
                         name: rowObj.name,
-                        category: rowObj.category ? rowObj.category.toLowerCase().trim() : 'food',
+                        category: rowObj.category ? rowObj.category.toLowerCase().trim().replace(/\s+/g, '-') : 'breakfast',
                         price: parseFloat(rowObj.price) || 0,
                         rating: rowObj.rating || '4.5',
                         image: rowObj.image || 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80'
@@ -370,9 +410,9 @@
 
         function filterCategory(category, btnElement) {
             document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.className = "cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition";
+                btn.className = "cat-btn bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition flex items-center gap-1.5";
             });
-            btnElement.className = "cat-btn shrink-0 bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition";
+            btnElement.className = "cat-btn bg-[#3b531f] text-white px-4 py-2.5 rounded-full text-xs font-bold shadow-sm transition flex items-center gap-1.5";
 
             document.querySelectorAll('.menu-card').forEach(card => {
                 if (category === 'all' || card.dataset.category === category) {
