@@ -51,12 +51,13 @@
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400 text-sm"></i>
             </div>
 
-            <!-- Category Horizontal Pills Grid -->
-            <div class="flex flex-wrap gap-2 my-4 justify-center" id="category-pills">
-                <button onclick="filterCategory('all', this)" class="cat-btn bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition" data-en="All" data-am="ሁሉም">All</button>
-                <button onclick="filterCategory('breakfast', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Breakfast" data-am="ቁርስ">Breakfast</button>
-                <button onclick="filterCategory('burger', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Burger & Sandwiches" data-am="በርገር እና ሳንድዊች">Burger & Sandwiches</button>
-                <button onclick="filterCategory('desserts', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Desserts" data-am="ጣፋጮች">Desserts</button>
+            <!-- Category Horizontal Pills Grid (Updated Bar Options) -->
+            <div class="flex gap-2 overflow-x-auto no-scrollbar my-4 pb-2 px-1" id="category-pills">
+                <button onclick="filterCategory('all', this)" class="cat-btn shrink-0 bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition" data-en="All" data-am="ሁሉም">All</button>
+                <button onclick="filterCategory('food', this)" class="cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="List of Foods" data-am="የምግብ ዝርዝር">List of Foods</button>
+                <button onclick="filterCategory('hot-drinks', this)" class="cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Hot Drinks" data-am="ትኩስ መጠጦች">Hot Drinks</button>
+                <button onclick="filterCategory('soft-drinks', this)" class="cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Soft Drinks" data-am="ለስላሳ መጠጦች">Soft Drinks</button>
+                <button onclick="filterCategory('juices', this)" class="cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Juices" data-am="ጁስ">Juices</button>
             </div>
 
             <!-- Menu Item Cards Dynamic Container -->
@@ -254,7 +255,7 @@
         </div>
     </div>
 
-    <!-- JavaScript Application Logic with Bilingual Translation Engine -->
+    <!-- JavaScript Application Logic -->
     <script>
         let currentLang = 'en';
         let menuItems = [];
@@ -273,7 +274,6 @@
             currentLang = currentLang === 'en' ? 'am' : 'en';
             document.getElementById('lang-label').innerText = currentLang === 'en' ? 'አማርኛ' : 'English';
             
-            // Translate all elements containing data attributes
             document.querySelectorAll('[data-en]').forEach(el => {
                 el.innerText = el.getAttribute(`data-${currentLang}`);
             });
@@ -288,10 +288,12 @@
                 const data = await response.text();
                 parseCSV(data);
             } catch (error) {
-                console.error("Using backup items:", error);
+                console.error("Using backup demo items matching new categories:", error);
                 menuItems = [
-                    { id: 1, name: "American Pancake", category: "breakfast", price: 850, rating: 4.8, image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80" },
-                    { id: 2, name: "Vegetable Wrap", category: "burger", price: 900, rating: 4.0, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" }
+                    { id: 1, name: "Special Burger", category: "food", price: 450, rating: 4.9, image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" },
+                    { id: 2, name: "Macchiato", category: "hot-drinks", price: 50, rating: 4.8, image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" },
+                    { id: 3, name: "Coca Cola", category: "soft-drinks", price: 40, rating: 4.7, image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=80" },
+                    { id: 4, name: "Fresh Avocado Juice", category: "juices", price: 90, rating: 4.9, image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80" }
                 ];
                 renderMenu(menuItems);
             }
@@ -312,7 +314,7 @@
                     menuItems.push({
                         id: rowObj.id || i,
                         name: rowObj.name,
-                        category: rowObj.category || 'all',
+                        category: rowObj.category ? rowObj.category.toLowerCase().trim() : 'food',
                         price: parseFloat(rowObj.price) || 0,
                         rating: rowObj.rating || '4.5',
                         image: rowObj.image || 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80'
@@ -368,9 +370,9 @@
 
         function filterCategory(category, btnElement) {
             document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.className = "cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition";
+                btn.className = "cat-btn shrink-0 bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition";
             });
-            btnElement.className = "cat-btn bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition";
+            btnElement.className = "cat-btn shrink-0 bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition";
 
             document.querySelectorAll('.menu-card').forEach(card => {
                 if (category === 'all' || card.dataset.category === category) {
