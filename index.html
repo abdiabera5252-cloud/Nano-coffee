@@ -16,7 +16,7 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="text-slate-800 pb-24">
+<body class="text-slate-800 pb-28">
 
     <!-- Top Header -->
     <header class="bg-white px-4 py-3 flex justify-between items-center shadow-sm sticky top-0 z-40 border-b border-slate-100">
@@ -25,12 +25,12 @@
                 <span class="text-sm tracking-tighter">NANO</span>
             </div>
             <div>
-                <h1 class="font-extrabold text-base tracking-tight text-slate-900 leading-tight">NANO CAFFEE HOUSE</h1>
-                <p class="text-[11px] text-slate-400 font-medium"><i class="fa-solid fa-location-dot text-amber-600 mr-0.5"></i> Hawassa, Ethiopia</p>
+                <h1 class="font-extrabold text-base tracking-tight text-slate-900 leading-tight" data-en="NANO CAFFEE HOUSE" data-am="ናኖ ካፌ ሃውስ">NANO CAFFEE HOUSE</h1>
+                <p class="text-[11px] text-slate-400 font-medium"><i class="fa-solid fa-location-dot text-amber-600 mr-0.5"></i> <span data-en="Hawassa, Ethiopia" data-am="ሃዋሳ፣ ኢትዮጵያ">Hawassa, Ethiopia</span></p>
             </div>
         </div>
-        <button class="bg-[#10a343] text-white px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-sm hover:bg-[#0e8f3b] transition">
-            <i class="fa-solid fa-language text-sm"></i> አማ
+        <button onclick="toggleLanguage()" id="lang-btn" class="bg-[#10a343] text-white px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-sm hover:bg-[#0e8f3b] transition">
+            <i class="fa-solid fa-language text-sm"></i> <span id="lang-label">አማርኛ</span>
         </button>
     </header>
 
@@ -41,41 +41,40 @@
         <div id="tab-content-menu">
             <!-- Welcome Title & Subtitle -->
             <div class="text-center my-4">
-                <h2 class="text-3xl font-black text-[#3d442a] tracking-tight">Menu</h2>
-                <p class="text-xs text-slate-500 font-medium mt-1 px-4">Live menu synced directly from Google Sheets.</p>
+                <h2 class="text-3xl font-black text-[#3d442a] tracking-tight" data-en="Menu" data-am="ሜኑ">Menu</h2>
+                <p class="text-xs text-slate-500 font-medium mt-1 px-4" data-en="Live menu synced directly from Google Sheets." data-am="ከጉግል ሺት በቀጥታ የሚሰራ ማስተካከያ።">Live menu synced directly from Google Sheets.</p>
             </div>
 
             <!-- Search Input -->
             <div class="relative my-4">
-                <input type="text" id="search-input" onkeyup="searchMenu()" placeholder="Search items from sheet..." class="w-full bg-white py-3.5 pl-11 pr-4 rounded-2xl border border-slate-200 text-xs font-medium focus:outline-none focus:border-amber-500 shadow-sm transition">
+                <input type="text" id="search-input" onkeyup="searchMenu()" placeholder="Search items..." data-en-placeholder="Search items..." data-am-placeholder="ዕቃዎችን ይፈልጉ..." class="w-full bg-white py-3.5 pl-11 pr-4 rounded-2xl border border-slate-200 text-xs font-medium focus:outline-none focus:border-amber-500 shadow-sm transition">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400 text-sm"></i>
             </div>
 
             <!-- Category Horizontal Pills Grid -->
             <div class="flex flex-wrap gap-2 my-4 justify-center" id="category-pills">
-                <button onclick="filterCategory('all', this)" class="cat-btn bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition">All</button>
-                <button onclick="filterCategory('breakfast', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Breakfast</button>
-                <button onclick="filterCategory('burger', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Burger & Sandwiches</button>
-                <button onclick="filterCategory('desserts', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Desserts</button>
+                <button onclick="filterCategory('all', this)" class="cat-btn bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition" data-en="All" data-am="ሁሉም">All</button>
+                <button onclick="filterCategory('breakfast', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Breakfast" data-am="ቁርስ">Breakfast</button>
+                <button onclick="filterCategory('burger', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Burger & Sandwiches" data-am="በርገር እና ሳንድዊች">Burger & Sandwiches</button>
+                <button onclick="filterCategory('desserts', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition" data-en="Desserts" data-am="ጣፋጮች">Desserts</button>
             </div>
 
             <!-- Menu Item Cards Dynamic Container -->
             <div id="menu-items-container" class="space-y-4">
-                <!-- Loading indicator -->
                 <div class="text-center py-10 text-xs text-slate-400">
                     <i class="fa-solid fa-spinner fa-spin text-lg text-amber-600 mb-2"></i>
-                    <p>Loading menu items from Google Sheet...</p>
+                    <p data-en="Loading menu items..." data-am="ሜኑ በመጫን ላይ...">Loading menu items...</p>
                 </div>
             </div>
         </div>
 
         <!-- ================= SECTION: LIVE ORDER TRACKING ================= -->
         <div id="tab-content-track" class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 my-6 hidden">
-            <h3 class="text-xl font-black text-[#1e3d1a] mb-2">Live Order Tracking</h3>
-            <p class="text-xs text-slate-500 mb-4">Enter your order number for real-time updates.</p>
+            <h3 class="text-xl font-black text-[#1e3d1a] mb-2" data-en="Live Order Tracking" data-am="የትዕዛዝ ክትትል">Live Order Tracking</h3>
+            <p class="text-xs text-slate-500 mb-4" data-en="Enter your order number for real-time updates." data-am="ትዕዛዝዎን ለመከታተል ቁጥሩን ያስገቡ።">Enter your order number for real-time updates.</p>
             <div class="flex gap-2">
                 <input type="text" id="tracking-input" placeholder="ORD-2026-XXXX" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs font-medium focus:outline-none focus:border-amber-500">
-                <button onclick="trackOrder()" class="bg-[#10a343] hover:bg-[#0e8f3b] text-white px-5 py-3 rounded-xl text-xs font-bold shadow-sm transition">Track</button>
+                <button onclick="trackOrder()" class="bg-[#10a343] hover:bg-[#0e8f3b] text-white px-5 py-3 rounded-xl text-xs font-bold shadow-sm transition" data-en="Track" data-am="ፈልግ">Track</button>
             </div>
             <div id="tracking-result" class="mt-4 text-xs font-medium text-slate-600"></div>
         </div>
@@ -83,21 +82,20 @@
         <!-- ================= SECTION: PAYMENT ACCOUNTS ================= -->
         <div id="tab-content-payment" class="my-6 hidden">
             <div class="text-center mb-6">
-                <h2 class="text-2xl font-black text-[#3d442a] tracking-tight">Payment Accounts</h2>
-                <p class="text-xs text-slate-500 font-medium mt-1 px-4">Direct bank transfer and mobile wallet information for digital billing.</p>
+                <h2 class="text-2xl font-black text-[#3d442a] tracking-tight" data-en="Payment Accounts" data-am="የክፍያ አካውንቶች">Payment Accounts</h2>
+                <p class="text-xs text-slate-500 font-medium mt-1 px-4" data-en="Direct bank transfer and mobile wallet details." data-am="የባንክ እና የሞባይል የክፍያ መረጃዎች።">Direct bank transfer and mobile wallet details.</p>
             </div>
             
             <div class="space-y-3">
-                <!-- Commercial Bank of Ethiopia (CBE) -->
                 <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center font-black text-lg">
                             <i class="fa-solid fa-building-columns"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-sm text-slate-900">Commercial Bank of Ethiopia</h4>
+                            <h4 class="font-bold text-sm text-slate-900" data-en="Commercial Bank of Ethiopia" data-am="የኢትዮጵያ ንግድ ባንክ">Commercial Bank of Ethiopia</h4>
                             <p class="text-xs font-mono text-purple-700 font-semibold mt-0.5">1000123456789</p>
-                            <p class="text-[10px] text-slate-400">Account Name: Nano Caffee House</p>
+                            <p class="text-[10px] text-slate-400" data-en="Account Name: Nano Caffee House" data-am="የሂሳብ ስም: ናኖ ካፌ ሃውስ">Account Name: Nano Caffee House</p>
                         </div>
                     </div>
                     <button onclick="copyToClipboard('1000123456789')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 p-2.5 rounded-xl text-xs transition">
@@ -105,36 +103,18 @@
                     </button>
                 </div>
 
-                <!-- Telebirr -->
                 <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-[#10a343] flex items-center justify-center font-black text-lg">
                             <i class="fa-solid fa-mobile-screen-button"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-sm text-slate-900">Telebirr Wallet</h4>
+                            <h4 class="font-bold text-sm text-slate-900" data-en="Telebirr Wallet" data-am="ቴሌብር አካውንት">Telebirr Wallet</h4>
                             <p class="text-xs font-mono text-[#10a343] font-semibold mt-0.5">+251 925 256 424</p>
-                            <p class="text-[10px] text-slate-400">Merchant / Name: Abdi Abera</p>
+                            <p class="text-[10px] text-slate-400" data-en="Name: Abdi Abera" data-am="ስም: አብዲ አበራ">Name: Abdi Abera</p>
                         </div>
                     </div>
                     <button onclick="copyToClipboard('+251925256424')" class="bg-emerald-50 hover:bg-emerald-100 text-[#10a343] p-2.5 rounded-xl text-xs transition">
-                        <i class="fa-regular fa-copy"></i>
-                    </button>
-                </div>
-
-                <!-- Awash Bank -->
-                <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-black text-lg">
-                            <i class="fa-solid fa-wallet"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-900">Awash Bank</h4>
-                            <p class="text-xs font-mono text-amber-700 font-semibold mt-0.5">01324567890100</p>
-                            <p class="text-[10px] text-slate-400">Account Name: Nano Caffee House</p>
-                        </div>
-                    </div>
-                    <button onclick="copyToClipboard('01324567890100')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 p-2.5 rounded-xl text-xs transition">
                         <i class="fa-regular fa-copy"></i>
                     </button>
                 </div>
@@ -143,12 +123,12 @@
 
         <!-- ================= SECTION: FEEDBACK TAB ================= -->
         <div id="tab-content-feedback" class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 my-6 hidden">
-            <h3 class="text-xl font-black text-[#1e3d1a] mb-1">Customer Feedback</h3>
-            <p class="text-xs text-slate-500 mb-4">We value your experience! Let us know how we can improve.</p>
+            <h3 class="text-xl font-black text-[#1e3d1a] mb-1" data-en="Customer Feedback" data-am="የደንበኛ አስተያየት">Customer Feedback</h3>
+            <p class="text-xs text-slate-500 mb-4" data-en="We value your experience! Let us know." data-am="አስተያየትዎ ይጠቅመናል! ሃሳብዎን ያካፍሉ።">We value your experience! Let us know.</p>
             
             <div class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Rating</label>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5" data-en="Rating" data-am="ደረጃ">Rating</label>
                     <div class="flex gap-2 text-2xl text-amber-400 cursor-pointer">
                         <i class="fa-solid fa-star hover:scale-110 transition" onclick="setRating(1)"></i>
                         <i class="fa-solid fa-star hover:scale-110 transition" onclick="setRating(2)"></i>
@@ -158,17 +138,23 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Your Name</label>
+                    <label class="block text-xs font-bold text-slate-700 mb-1" data-en="Your Name" data-am="ስምዎ">Your Name</label>
                     <input type="text" id="feedback-name" placeholder="Abdi Abera" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-amber-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Comments or Suggestions</label>
-                    <textarea id="feedback-msg" placeholder="Tell us about the food, service, or atmosphere..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs h-24 focus:outline-none focus:border-amber-500"></textarea>
+                    <label class="block text-xs font-bold text-slate-700 mb-1" data-en="Comments" data-am="አስተያየት">Comments</label>
+                    <textarea id="feedback-msg" placeholder="Write feedback..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs h-24 focus:outline-none focus:border-amber-500"></textarea>
                 </div>
-                <button onclick="submitFeedback()" class="w-full bg-[#10a343] hover:bg-[#0e8f3b] text-white py-3.5 rounded-2xl text-xs font-bold shadow-md transition">
+                <button onclick="submitFeedback()" class="w-full bg-[#10a343] hover:bg-[#0e8f3b] text-white py-3.5 rounded-2xl text-xs font-bold shadow-md transition" data-en="Submit Feedback" data-am="አስተያየት ላክ">
                     Submit Feedback
                 </button>
             </div>
+        </div>
+
+        <!-- ================= FOOTER BRANDING ================= -->
+        <div class="text-center py-6 border-t border-slate-200 mt-8">
+            <p class="text-xs text-slate-500 font-semibold" data-en="Designed by Abdi Abera" data-am="በአብዲ አበራ የተሰራ">Designed by Abdi Abera</p>
+            <p class="text-[11px] font-mono text-amber-700 mt-1"><i class="fa-solid fa-phone mr-1"></i>+251 925 256 424</p>
         </div>
 
     </main>
@@ -184,31 +170,31 @@
         </button>
     </div>
 
-    <!-- Bottom Navigation Bar (Updated with Payment & Feedback tabs) -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-3 px-4 flex justify-around items-center z-40 shadow-lg">
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-3 px-2 flex justify-around items-center z-40 shadow-lg">
         <button onclick="switchTab('menu')" id="nav-menu" class="flex flex-col items-center text-[#235324]">
             <i class="fa-solid fa-table-cells text-base"></i>
-            <span class="text-[9px] font-bold mt-1">Menu</span>
+            <span class="text-[9px] font-bold mt-1" data-en="Menu" data-am="ሜኑ">Menu</span>
         </button>
         <button onclick="switchTab('track')" id="nav-track" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
             <i class="fa-solid fa-clock text-base"></i>
-            <span class="text-[9px] font-medium mt-1">Track</span>
+            <span class="text-[9px] font-medium mt-1" data-en="Track" data-am="ክትትል">Track</span>
         </button>
         <button onclick="switchTab('payment')" id="nav-payment" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
             <i class="fa-solid fa-wallet text-base"></i>
-            <span class="text-[9px] font-medium mt-1">Payment</span>
+            <span class="text-[9px] font-medium mt-1" data-en="Payment" data-am="ክፍያ">Payment</span>
         </button>
         <button onclick="switchTab('feedback')" id="nav-feedback" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
             <i class="fa-solid fa-comment-dots text-base"></i>
-            <span class="text-[9px] font-medium mt-1">Feedback</span>
+            <span class="text-[9px] font-medium mt-1" data-en="Feedback" data-am="አስተያየት">Feedback</span>
         </button>
         <button onclick="toggleWaiterModal()" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
             <i class="fa-solid fa-bell-concierge text-base"></i>
-            <span class="text-[9px] font-medium mt-1">Waiter</span>
+            <span class="text-[9px] font-medium mt-1" data-en="Waiter" data-am="አስተናጋጅ">Waiter</span>
         </button>
         <button onclick="toggleCartModal()" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
             <i class="fa-solid fa-basket-shopping text-base"></i>
-            <span class="text-[9px] font-medium mt-1">Cart</span>
+            <span class="text-[9px] font-medium mt-1" data-en="Cart" data-am="ቅርጫት">Cart</span>
         </button>
     </nav>
 
@@ -217,28 +203,21 @@
         <div class="bg-white w-full max-w-md max-h-[90vh] rounded-t-3xl sm:rounded-3xl p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
             <div>
                 <div class="flex justify-between items-center border-b pb-3">
-                    <h2 class="font-extrabold text-base text-slate-900">Call a Waiter</h2>
-                    <button onclick="toggleWaiterModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                    <h2 class="font-extrabold text-base text-slate-900" data-en="Call a Waiter" data-am="አስተናጋጅ ጥራ">Call a Waiter</h2>
+                    <button onclick="toggleWaiterModal()" class="text-slate-400"><i class="fa-solid fa-xmark text-lg"></i></button>
                 </div>
                 <div class="my-4">
-                    <label class="block text-xs font-bold text-slate-700 mb-2">Select Your Table</label>
+                    <label class="block text-xs font-bold text-slate-700 mb-2" data-en="Select Your Table" data-am="ጠረጴዛዎትን ይምረጡ">Select Your Table</label>
                     <div class="grid grid-cols-3 gap-2" id="waiter-tables">
-                        <button onclick="selectTableWaiter(1, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343]">Table 1</button>
-                        <button onclick="selectTableWaiter(2, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343]">Table 2</button>
-                        <button onclick="selectTableWaiter(3, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343] hover:border-[#10a343]">Table 3</button>
-                    </div>
-                </div>
-                <div class="my-4">
-                    <label class="block text-xs font-bold text-slate-700 mb-2">What do you need?</label>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="selectServiceReq('Water', this)" class="srv-btn border border-slate-200 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2"><i class="fa-solid fa-mug-hot text-amber-600"></i> Water</button>
-                        <button onclick="selectServiceReq('Bill', this)" class="srv-btn border border-slate-200 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-center gap-2"><i class="fa-solid fa-receipt text-amber-600"></i> Bill</button>
+                        <button onclick="selectTableWaiter(1, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343]">Table 1</button>
+                        <button onclick="selectTableWaiter(2, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343]">Table 2</button>
+                        <button onclick="selectTableWaiter(3, this)" class="waiter-tbl bg-white border border-slate-200 py-3 rounded-xl text-xs font-bold text-[#10a343]">Table 3</button>
                     </div>
                 </div>
             </div>
             <div class="border-t pt-4 flex gap-2">
-                <button onclick="toggleWaiterModal()" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl text-xs font-bold">Close</button>
-                <button onclick="submitWaiterCall()" class="flex-1 bg-red-600 text-white py-3 rounded-xl text-xs font-bold shadow-md">Call Waiter</button>
+                <button onclick="toggleWaiterModal()" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl text-xs font-bold" data-en="Close" data-am="ዝጋ">Close</button>
+                <button onclick="submitWaiterCall()" class="flex-1 bg-red-600 text-white py-3 rounded-xl text-xs font-bold shadow-md" data-en="Call Waiter" data-am="አስተናጋጅ ጥራ">Call Waiter</button>
             </div>
         </div>
     </div>
@@ -249,46 +228,59 @@
             <div>
                 <div class="flex justify-between items-center border-b pb-4">
                     <h2 class="font-extrabold text-base text-slate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-basket-shopping text-amber-600"></i> Your Order
+                        <i class="fa-solid fa-basket-shopping text-amber-600"></i> <span data-en="Your Order" data-am="ትዕዛዝዎ">Your Order</span>
                     </h2>
-                    <button onclick="toggleCartModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                    <button onclick="toggleCartModal()" class="text-slate-400"><i class="fa-solid fa-xmark text-lg"></i></button>
                 </div>
                 <div class="flex justify-between items-center my-4 p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                    <span class="font-bold text-xs text-slate-700">Subtotal</span>
+                    <span class="font-bold text-xs text-slate-700" data-en="Subtotal" data-am="አጠቃላይ ዋጋ">Subtotal</span>
                     <span id="cart-subtotal" class="font-black text-sm text-amber-600">ETB 0.00</span>
                 </div>
                 <div id="cart-items-list" class="space-y-2 mb-4">
-                    <p class="text-xs text-slate-400 text-center py-6">Your cart is empty</p>
+                    <p class="text-xs text-slate-400 text-center py-6" data-en="Your cart is empty" data-am="ቅርጫትዎ ባዶ ነው">Your cart is empty</p>
                 </div>
                 <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-3 mb-4">
-                    <h3 class="font-bold text-xs text-slate-800">Your Information</h3>
+                    <h3 class="font-bold text-xs text-slate-800" data-en="Your Information" data-am="የእርስዎ መረጃ">Your Information</h3>
                     <input type="text" id="cust-name" placeholder="Name (Optional)" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-500">
                     <input type="text" id="cust-phone" placeholder="Phone Number" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-500">
                 </div>
             </div>
             <div class="border-t pt-4 flex gap-2">
-                <button onclick="toggleCartModal()" class="flex-1 bg-slate-100 text-slate-700 py-3.5 rounded-2xl text-xs font-bold">Close</button>
+                <button onclick="toggleCartModal()" class="flex-1 bg-slate-100 text-slate-700 py-3.5 rounded-2xl text-xs font-bold" data-en="Close" data-am="ዝጋ">Close</button>
                 <button onclick="confirmOrderWhatsApp()" class="flex-2 bg-[#10a343] text-white py-3.5 rounded-2xl text-xs font-extrabold shadow-md flex items-center justify-center gap-1.5">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> Confirm Order
+                    <i class="fa-brands fa-whatsapp text-sm"></i> <span data-en="Confirm Order" data-am="ትዕዛዝ አረጋግጥ">Confirm Order</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript Application Logic -->
+    <!-- JavaScript Application Logic with Bilingual Translation Engine -->
     <script>
+        let currentLang = 'en';
         let menuItems = [];
         let cart = [];
         let selectedTableWaiter = 1;
         let selectedService = 'Water';
         let currentRating = 5;
 
-        // Replace with your Google Sheet published CSV URL
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR_YOUR_SHEET_ID_HERE/pub?output=csv";
 
         window.addEventListener('DOMContentLoaded', () => {
             fetchMenuFromSheet();
         });
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'am' : 'en';
+            document.getElementById('lang-label').innerText = currentLang === 'en' ? 'አማርኛ' : 'English';
+            
+            // Translate all elements containing data attributes
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.innerText = el.getAttribute(`data-${currentLang}`);
+            });
+            document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+                el.placeholder = el.getAttribute(`data-${currentLang}-placeholder`);
+            });
+        }
 
         async function fetchMenuFromSheet() {
             try {
@@ -296,7 +288,7 @@
                 const data = await response.text();
                 parseCSV(data);
             } catch (error) {
-                console.error("Using backup demo items:", error);
+                console.error("Using backup items:", error);
                 menuItems = [
                     { id: 1, name: "American Pancake", category: "breakfast", price: 850, rating: 4.8, image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80" },
                     { id: 2, name: "Vegetable Wrap", category: "burger", price: 900, rating: 4.0, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" }
@@ -349,7 +341,7 @@
                         <div class="p-4">
                             <h3 class="font-bold text-base text-[#1e3d1a]">${item.name}</h3>
                             <button onclick="addToOrder('${item.name}', ${item.price})" class="w-full mt-4 bg-[#10a343] hover:bg-[#0e8f3b] text-white font-bold py-3 rounded-2xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
-                                <i class="fa-solid fa-plus text-sm"></i> Add to Order
+                                <i class="fa-solid fa-plus text-sm"></i> <span data-en="Add to Order" data-am="ወደ ትዕዛዝ ጨምር">${currentLang === 'en' ? 'Add to Order' : 'ወደ ትዕዛዝ ጨምር'}</span>
                             </button>
                         </div>
                     </div>
@@ -358,7 +350,6 @@
             container.innerHTML = html;
         }
 
-        // Switch main views (Menu, Track, Payment, Feedback)
         function switchTab(tabName) {
             const tabs = ['menu', 'track', 'payment', 'feedback'];
             tabs.forEach(t => {
@@ -432,7 +423,7 @@
                 `;
             });
             badge.innerText = totalCount;
-            listEl.innerHTML = html || '<p class="text-xs text-slate-400 text-center py-6">Your cart is empty</p>';
+            listEl.innerHTML = html || `<p class="text-xs text-slate-400 text-center py-6">${currentLang === 'en' ? 'Your cart is empty' : 'ቅርጫትዎ ባዶ ነው'}</p>`;
             subtotalEl.innerText = `ETB ${totalPrice}.00`;
         }
 
@@ -442,14 +433,8 @@
             btn.classList.add('border-[#10a343]', 'bg-emerald-50');
         }
 
-        function selectServiceReq(srv, btn) {
-            selectedService = srv;
-            document.querySelectorAll('.srv-btn').forEach(b => b.classList.remove('border-amber-500'));
-            btn.classList.add('border-amber-500');
-        }
-
         function submitWaiterCall() {
-            alert(`🔔 Waiter called to Table ${selectedTableWaiter} for: ${selectedService}!`);
+            alert(currentLang === 'en' ? `🔔 Waiter called to Table ${selectedTableWaiter}!` : `🔔 አስተናጋጅ ወደ ጠረጴዛ ${selectedTableWaiter} ተጠርቷል!`);
             toggleWaiterModal();
         }
 
@@ -457,24 +442,21 @@
             const code = document.getElementById('tracking-input').value;
             const res = document.getElementById('tracking-result');
             if(!code) return res.innerHTML = '<span class="text-red-500">Please enter order number.</span>';
-            res.innerHTML = `<div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800">Order <b>${code}</b> is being prepared in the kitchen.</div>`;
+            res.innerHTML = `<div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800">Order <b>${code}</b> is being prepared.</div>`;
         }
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text);
-            alert(`Copied account info: ${text}`);
+            alert(`Copied: ${text}`);
         }
 
-        function setRating(r) {
-            currentRating = r;
-            alert(`You selected ${r} stars rating.`);
-        }
+        function setRating(r) { currentRating = r; }
 
         function submitFeedback() {
             const name = document.getElementById('feedback-name').value || 'Anonymous';
             const msg = document.getElementById('feedback-msg').value;
             if(!msg) return alert('Please enter your feedback comments.');
-            alert(`Thank you ${name}! Your feedback (${currentRating} stars) has been submitted successfully.`);
+            alert(`Thank you ${name}! Feedback submitted successfully.`);
             document.getElementById('feedback-msg').value = '';
             switchTab('menu');
         }
