@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nano Caffee House | Digital Menu</title>
+    <title>Nano Caffee House | Digital Menu & Payments</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f7faf5; }
@@ -15,6 +18,7 @@
 </head>
 <body class="text-slate-800 pb-24">
 
+    <!-- Top Header -->
     <header class="bg-white px-4 py-3 flex justify-between items-center shadow-sm sticky top-0 z-40 border-b border-slate-100">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-black shadow-md border-2 border-amber-400 overflow-hidden">
@@ -30,33 +34,43 @@
         </button>
     </header>
 
+    <!-- Main Content Container -->
     <main class="max-w-md mx-auto px-4 pt-4">
         
-        <div class="text-center my-4">
-            <h2 class="text-3xl font-black text-[#3d442a] tracking-tight">Menu</h2>
-            <p class="text-xs text-slate-500 font-medium mt-1 px-4">Live menu synced directly from Google Sheets.</p>
-        </div>
+        <!-- ================= SECTION: MENU TAB ================= -->
+        <div id="tab-content-menu">
+            <!-- Welcome Title & Subtitle -->
+            <div class="text-center my-4">
+                <h2 class="text-3xl font-black text-[#3d442a] tracking-tight">Menu</h2>
+                <p class="text-xs text-slate-500 font-medium mt-1 px-4">Live menu synced directly from Google Sheets.</p>
+            </div>
 
-        <div class="relative my-4">
-            <input type="text" id="search-input" onkeyup="searchMenu()" placeholder="Search items from sheet..." class="w-full bg-white py-3.5 pl-11 pr-4 rounded-2xl border border-slate-200 text-xs font-medium focus:outline-none focus:border-amber-500 shadow-sm transition">
-            <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400 text-sm"></i>
-        </div>
+            <!-- Search Input -->
+            <div class="relative my-4">
+                <input type="text" id="search-input" onkeyup="searchMenu()" placeholder="Search items from sheet..." class="w-full bg-white py-3.5 pl-11 pr-4 rounded-2xl border border-slate-200 text-xs font-medium focus:outline-none focus:border-amber-500 shadow-sm transition">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400 text-sm"></i>
+            </div>
 
-        <div class="flex flex-wrap gap-2 my-4 justify-center" id="category-pills">
-            <button onclick="filterCategory('all', this)" class="cat-btn bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition">All</button>
-            <button onclick="filterCategory('breakfast', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Breakfast</button>
-            <button onclick="filterCategory('burger', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Burger & Sandwiches</button>
-            <button onclick="filterCategory('desserts', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Desserts</button>
-        </div>
+            <!-- Category Horizontal Pills Grid -->
+            <div class="flex flex-wrap gap-2 my-4 justify-center" id="category-pills">
+                <button onclick="filterCategory('all', this)" class="cat-btn bg-[#235324] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition">All</button>
+                <button onclick="filterCategory('breakfast', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Breakfast</button>
+                <button onclick="filterCategory('burger', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Burger & Sandwiches</button>
+                <button onclick="filterCategory('desserts', this)" class="cat-btn bg-white text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold shadow-sm hover:bg-slate-50 transition">Desserts</button>
+            </div>
 
-        <div id="menu-items-container" class="space-y-4">
-            <div class="text-center py-10 text-xs text-slate-400">
-                <i class="fa-solid fa-spinner fa-spin text-lg text-amber-600 mb-2"></i>
-                <p>Loading menu items from Google Sheet...</p>
+            <!-- Menu Item Cards Dynamic Container -->
+            <div id="menu-items-container" class="space-y-4">
+                <!-- Loading indicator -->
+                <div class="text-center py-10 text-xs text-slate-400">
+                    <i class="fa-solid fa-spinner fa-spin text-lg text-amber-600 mb-2"></i>
+                    <p>Loading menu items from Google Sheet...</p>
+                </div>
             </div>
         </div>
 
-        <div id="track-section" class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 my-6 hidden">
+        <!-- ================= SECTION: LIVE ORDER TRACKING ================= -->
+        <div id="tab-content-track" class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 my-6 hidden">
             <h3 class="text-xl font-black text-[#1e3d1a] mb-2">Live Order Tracking</h3>
             <p class="text-xs text-slate-500 mb-4">Enter your order number for real-time updates.</p>
             <div class="flex gap-2">
@@ -66,8 +80,100 @@
             <div id="tracking-result" class="mt-4 text-xs font-medium text-slate-600"></div>
         </div>
 
+        <!-- ================= SECTION: PAYMENT ACCOUNTS ================= -->
+        <div id="tab-content-payment" class="my-6 hidden">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-black text-[#3d442a] tracking-tight">Payment Accounts</h2>
+                <p class="text-xs text-slate-500 font-medium mt-1 px-4">Direct bank transfer and mobile wallet information for digital billing.</p>
+            </div>
+            
+            <div class="space-y-3">
+                <!-- Commercial Bank of Ethiopia (CBE) -->
+                <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center font-black text-lg">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-slate-900">Commercial Bank of Ethiopia</h4>
+                            <p class="text-xs font-mono text-purple-700 font-semibold mt-0.5">1000123456789</p>
+                            <p class="text-[10px] text-slate-400">Account Name: Nano Caffee House</p>
+                        </div>
+                    </div>
+                    <button onclick="copyToClipboard('1000123456789')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 p-2.5 rounded-xl text-xs transition">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+
+                <!-- Telebirr -->
+                <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-[#10a343] flex items-center justify-center font-black text-lg">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-slate-900">Telebirr Wallet</h4>
+                            <p class="text-xs font-mono text-[#10a343] font-semibold mt-0.5">+251 925 256 424</p>
+                            <p class="text-[10px] text-slate-400">Merchant / Name: Abdi Abera</p>
+                        </div>
+                    </div>
+                    <button onclick="copyToClipboard('+251925256424')" class="bg-emerald-50 hover:bg-emerald-100 text-[#10a343] p-2.5 rounded-xl text-xs transition">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+
+                <!-- Awash Bank -->
+                <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-black text-lg">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-slate-900">Awash Bank</h4>
+                            <p class="text-xs font-mono text-amber-700 font-semibold mt-0.5">01324567890100</p>
+                            <p class="text-[10px] text-slate-400">Account Name: Nano Caffee House</p>
+                        </div>
+                    </div>
+                    <button onclick="copyToClipboard('01324567890100')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 p-2.5 rounded-xl text-xs transition">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SECTION: FEEDBACK TAB ================= -->
+        <div id="tab-content-feedback" class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 my-6 hidden">
+            <h3 class="text-xl font-black text-[#1e3d1a] mb-1">Customer Feedback</h3>
+            <p class="text-xs text-slate-500 mb-4">We value your experience! Let us know how we can improve.</p>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Rating</label>
+                    <div class="flex gap-2 text-2xl text-amber-400 cursor-pointer">
+                        <i class="fa-solid fa-star hover:scale-110 transition" onclick="setRating(1)"></i>
+                        <i class="fa-solid fa-star hover:scale-110 transition" onclick="setRating(2)"></i>
+                        <i class="fa-solid fa-star hover:scale-110 transition" onclick="setRating(3)"></i>
+                        <i class="fa-solid fa-star hover:scale-110 transition" onclick="setRating(4)"></i>
+                        <i class="fa-solid fa-star hover:scale-110 transition" onclick="setRating(5)"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Your Name</label>
+                    <input type="text" id="feedback-name" placeholder="Abdi Abera" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Comments or Suggestions</label>
+                    <textarea id="feedback-msg" placeholder="Tell us about the food, service, or atmosphere..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs h-24 focus:outline-none focus:border-amber-500"></textarea>
+                </div>
+                <button onclick="submitFeedback()" class="w-full bg-[#10a343] hover:bg-[#0e8f3b] text-white py-3.5 rounded-2xl text-xs font-bold shadow-md transition">
+                    Submit Feedback
+                </button>
+            </div>
+        </div>
+
     </main>
 
+    <!-- Floating Action Buttons -->
     <div class="fixed bottom-20 right-4 flex flex-col gap-3 z-30">
         <button onclick="toggleWaiterModal()" class="w-12 h-12 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-105">
             <i class="fa-solid fa-bell text-sm"></i>
@@ -78,31 +184,35 @@
         </button>
     </div>
 
-    <div class="fixed bottom-20 left-4 z-30">
-        <button onclick="alert('Thank you for reviewing Nano Caffee House!')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg transition">
-            <i class="fa-solid fa-star text-amber-300"></i> Review Us
-        </button>
-    </div>
-
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-3 px-6 flex justify-around items-center z-40 shadow-lg">
+    <!-- Bottom Navigation Bar (Updated with Payment & Feedback tabs) -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-3 px-4 flex justify-around items-center z-40 shadow-lg">
         <button onclick="switchTab('menu')" id="nav-menu" class="flex flex-col items-center text-[#235324]">
             <i class="fa-solid fa-table-cells text-base"></i>
-            <span class="text-[10px] font-bold mt-1">Menu</span>
+            <span class="text-[9px] font-bold mt-1">Menu</span>
         </button>
         <button onclick="switchTab('track')" id="nav-track" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
             <i class="fa-solid fa-clock text-base"></i>
-            <span class="text-[10px] font-medium mt-1">Track</span>
+            <span class="text-[9px] font-medium mt-1">Track</span>
+        </button>
+        <button onclick="switchTab('payment')" id="nav-payment" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-wallet text-base"></i>
+            <span class="text-[9px] font-medium mt-1">Payment</span>
+        </button>
+        <button onclick="switchTab('feedback')" id="nav-feedback" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-comment-dots text-base"></i>
+            <span class="text-[9px] font-medium mt-1">Feedback</span>
         </button>
         <button onclick="toggleWaiterModal()" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
             <i class="fa-solid fa-bell-concierge text-base"></i>
-            <span class="text-[10px] font-medium mt-1">Waiter</span>
+            <span class="text-[9px] font-medium mt-1">Waiter</span>
         </button>
         <button onclick="toggleCartModal()" class="flex flex-col items-center text-slate-400 hover:text-slate-600">
             <i class="fa-solid fa-basket-shopping text-base"></i>
-            <span class="text-[10px] font-medium mt-1">Cart</span>
+            <span class="text-[9px] font-medium mt-1">Cart</span>
         </button>
     </nav>
 
+    <!-- Call a Waiter Modal -->
     <div id="waiter-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-end sm:items-center justify-center backdrop-blur-xs">
         <div class="bg-white w-full max-w-md max-h-[90vh] rounded-t-3xl sm:rounded-3xl p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
             <div>
@@ -133,6 +243,7 @@
         </div>
     </div>
 
+    <!-- Your Order / Checkout Drawer Modal -->
     <div id="cart-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex justify-end backdrop-blur-xs">
         <div class="bg-white w-full max-w-md h-full p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
             <div>
@@ -164,17 +275,17 @@
         </div>
     </div>
 
+    <!-- JavaScript Application Logic -->
     <script>
         let menuItems = [];
         let cart = [];
         let selectedTableWaiter = 1;
         let selectedService = 'Water';
+        let currentRating = 5;
 
-        // REPLACE THIS URL with your published Google Sheet CSV link
-        // File -> Share -> Publish to web -> Format: Comma-separated values (.csv)
-        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT643j-V65sTKYjMrcuHg9igQ-6T4U3FtpHub9EZB91lcbVX4gX1zNfpzhigMRgPEHk62IliUa2Ug1T/pub?gid=0&single=true&output=csv";
+        // Replace with your Google Sheet published CSV URL
+        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR_YOUR_SHEET_ID_HERE/pub?output=csv";
 
-        // Fetch menu data on page load
         window.addEventListener('DOMContentLoaded', () => {
             fetchMenuFromSheet();
         });
@@ -185,8 +296,7 @@
                 const data = await response.text();
                 parseCSV(data);
             } catch (error) {
-                console.error("Error loading sheet data, loading backup items:", error);
-                // Fallback demo items if sheet link isn't configured yet
+                console.error("Using backup demo items:", error);
                 menuItems = [
                     { id: 1, name: "American Pancake", category: "breakfast", price: 850, rating: 4.8, image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80" },
                     { id: 2, name: "Vegetable Wrap", category: "burger", price: 900, rating: 4.0, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" }
@@ -222,11 +332,6 @@
 
         function renderMenu(items) {
             const container = document.getElementById('menu-items-container');
-            if (items.length === 0) {
-                container.innerHTML = '<p class="text-xs text-slate-400 text-center py-10">No items found in Google Sheet.</p>';
-                return;
-            }
-
             let html = '';
             items.forEach(item => {
                 html += `
@@ -242,9 +347,7 @@
                             </div>
                         </div>
                         <div class="p-4">
-                            <div class="flex justify-between items-start">
-                                <h3 class="font-bold text-base text-[#1e3d1a]">${item.name}</h3>
-                            </div>
+                            <h3 class="font-bold text-base text-[#1e3d1a]">${item.name}</h3>
                             <button onclick="addToOrder('${item.name}', ${item.price})" class="w-full mt-4 bg-[#10a343] hover:bg-[#0e8f3b] text-white font-bold py-3 rounded-2xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
                                 <i class="fa-solid fa-plus text-sm"></i> Add to Order
                             </button>
@@ -253,6 +356,23 @@
                 `;
             });
             container.innerHTML = html;
+        }
+
+        // Switch main views (Menu, Track, Payment, Feedback)
+        function switchTab(tabName) {
+            const tabs = ['menu', 'track', 'payment', 'feedback'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`tab-content-${t}`);
+                const navBtn = document.getElementById(`nav-${t}`);
+                if (t === tabName) {
+                    if(el) el.classList.remove('hidden');
+                    if(navBtn) navBtn.className = "flex flex-col items-center text-[#235324]";
+                } else {
+                    if(el) el.classList.add('hidden');
+                    if(navBtn) navBtn.className = "flex flex-col items-center text-slate-400 hover:text-slate-600";
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function filterCategory(category, btnElement) {
@@ -274,32 +394,9 @@
             const query = document.getElementById('search-input').value.toLowerCase();
             document.querySelectorAll('.menu-card').forEach(card => {
                 const name = card.dataset.name;
-                if (name.includes(query)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                if (name.includes(query)) card.style.display = 'block';
+                else card.style.display = 'none';
             });
-        }
-
-        function switchTab(tab) {
-            const trackCont = document.getElementById('track-section');
-            const menuCont = document.getElementById('menu-items-container');
-            const navMenu = document.getElementById('nav-menu');
-            const navTrack = document.getElementById('nav-track');
-
-            if (tab === 'track') {
-                trackCont.classList.remove('hidden');
-                menuCont.parentElement.style.display = 'none';
-                trackCont.style.display = 'block';
-                navTrack.className = "flex flex-col items-center text-[#235324]";
-                navMenu.className = "flex flex-col items-center text-slate-400";
-            } else {
-                trackCont.classList.add('hidden');
-                menuCont.parentElement.style.display = 'block';
-                navMenu.className = "flex flex-col items-center text-[#235324]";
-                navTrack.className = "flex flex-col items-center text-slate-400";
-            }
         }
 
         function toggleCartModal() { document.getElementById('cart-modal').classList.toggle('hidden'); }
@@ -360,7 +457,26 @@
             const code = document.getElementById('tracking-input').value;
             const res = document.getElementById('tracking-result');
             if(!code) return res.innerHTML = '<span class="text-red-500">Please enter order number.</span>';
-            res.innerHTML = `<div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800">Order <b>${code}</b> is being prepared.</div>`;
+            res.innerHTML = `<div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800">Order <b>${code}</b> is being prepared in the kitchen.</div>`;
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert(`Copied account info: ${text}`);
+        }
+
+        function setRating(r) {
+            currentRating = r;
+            alert(`You selected ${r} stars rating.`);
+        }
+
+        function submitFeedback() {
+            const name = document.getElementById('feedback-name').value || 'Anonymous';
+            const msg = document.getElementById('feedback-msg').value;
+            if(!msg) return alert('Please enter your feedback comments.');
+            alert(`Thank you ${name}! Your feedback (${currentRating} stars) has been submitted successfully.`);
+            document.getElementById('feedback-msg').value = '';
+            switchTab('menu');
         }
 
         function confirmOrderWhatsApp() {
@@ -374,7 +490,7 @@
                 total += item.price * item.qty;
             });
             message += `%0A*Total Amount: ETB ${total}.00*`;
-            window.open(`https://wa.me/251900000000?text=${message}`, '_blank');
+            window.open(`https://wa.me/251925256424?text=${message}`, '_blank');
         }
     </script>
 </body>
